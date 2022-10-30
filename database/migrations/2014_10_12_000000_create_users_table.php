@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('age')->nullable();
+            $table->string('self_introduction', 200)->nullable();
         });
     }
 
