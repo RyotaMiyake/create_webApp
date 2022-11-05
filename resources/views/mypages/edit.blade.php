@@ -32,6 +32,14 @@
                                     <input type='number' name='user[age]' value="{{ $user->age }}">
                                     <p class="age__error" style="color:red">{{ $errors->first('user.age') }}</p>
                                 </div>
+                                <div>
+                                    <h2>Category</h2>
+                                    <select name="user[job_id]">
+                                        @foreach($jobs as $job)
+                                            <option value="{{ $job->id }}">{{ $job->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <input type="submit" value="保存"/>
                             </form>
                             <div class="footer">

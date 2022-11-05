@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'password',
         'self_introduction',
         'age',
+        'job_id',
     ];
 
     /**
@@ -43,4 +45,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    
+    //リレーション関連
+    
+    public function job(){
+        return $this->belongsTo(Job::class);
+    }
+    
+    public function threads(){
+        return $this->hasMany(Thread::class);
+    }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    
+    public function targets(){
+        return $this->hasMany(Target::class);
+    }
+    
+    public function studytimes(){
+        return $this->hasMany(StudyTime::class);
+    }
+    
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
+    
+    public function answers(){
+        return $this->hasMany(Answer::class);
+    }
+    
 }
