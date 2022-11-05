@@ -23,6 +23,9 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('age')->nullable();
             $table->string('self_introduction', 200)->nullable();
+            $table->foreignId('job_id')->nullable()->default(1)->constrained();
+            #$table->increments('job_id')->unsigned()->nullable();
+            #$table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
         });
     }
 

@@ -15,6 +15,8 @@
                     Introduction : {{ $user->self_introduction }}
                     <br>
                     Age : {{ $user->age }}
+                    <br>
+                    Job : {{ $user->job->name }}
                 </div>
                 <p class="edit">[<a href="/mypage/{{ Auth::user()->id }}/edit">edit</a>]</p>
             </div>
