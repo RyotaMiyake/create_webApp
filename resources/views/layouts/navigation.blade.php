@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('mypage.show', \Auth::user()->id)" :active="request()->routeIs('mypage.show')">
                         {{ __('My Page') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('threads.index')" :active="request()->routeIs('threads.index')">
+                        {{ __('Thread Page') }}
+                    </x-nav-link>
                 </div>
             </div>
 

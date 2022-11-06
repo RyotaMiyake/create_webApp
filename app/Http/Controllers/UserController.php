@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use App\Models\Thread;
+use App\Models\Comment;
 use App\Models\Job;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +18,8 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    public function show(User $user){
-        return view('mypages/show')->with(['user' => $user]);
+    public function show(User $user, Thread $thread, Comment $comment){
+        return view('mypages/show')->with(['user' => $user, 'threads' => $thread->get(), 'comments' => $comment->get()]);
     }
     
     public function edit(User $user, Job $job){
