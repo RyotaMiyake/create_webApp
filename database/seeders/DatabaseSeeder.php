@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             JobSeeder::class,    
+            CertificationSeeder::class,
+            #ThreadSeeder::class,
         ]);
     }
 }

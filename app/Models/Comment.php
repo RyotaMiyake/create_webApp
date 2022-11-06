@@ -9,6 +9,12 @@ class Comment extends Model
 {
     use HasFactory;
     
+    protected $fill = [
+        'body',
+        'user_id',
+        'thread_id',
+    ];
+    
     //リレーション関連
     
     public function user(){
