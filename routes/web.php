@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,19 @@ Route::controller(UserController::class)->middleware(['auth', 'verified'])->grou
 });
 
 //スレッドページ
-Route::get('/threads', [ThreadController::class, 'index'])->middleware(['auth', 'verified'])->name('threads.index');
-Route::post('/threads', [ThreadController::class, 'create'])->middleware(['auth', 'verified'])->name('threads.create');
-Route::get('/threads/{thread}', [ThreadController::class, 'show'])->middleware(['auth', 'verified'])->name('threads.create');
+Route::controller(ThreadController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/threads', 'index')->name('threads.index');
+    Route::post('/threads', 'store')->name('threads.store');
+    Route::get('/threads/{thread}', 'show')->name('threads.create');
 
+});
 Route::post('/threads/{thread}', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
+
+//Q&Aページ
+Route::controller(QuestionController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/questions', 'index')->name('questions.index');
+    Route::get('/questions/create', 'create')->name('questions.create');
+    Route::post('/questions', 'store')->name('questions.store');
+});
 
 require __DIR__.'/auth.php';

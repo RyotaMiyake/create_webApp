@@ -9,6 +9,13 @@ class Question extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'title',
+        'body',
+        'certification_id',
+        'user_id',
+    ];
+    
     //リレーション関連
     
     public function user(){

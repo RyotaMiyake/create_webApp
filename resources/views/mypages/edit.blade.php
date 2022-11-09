@@ -16,31 +16,33 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="name">
-                                    <h2>Name</h2>
+                                    <h2>名前</h2>
                                     <input type="text" name="user[name]" value="{{ $user->name }}"/>
                                     <p class="name__error" style="color:red">{{ $errors->first('user.name') }}</p>
                                 </div>
                                 
                                 <div class="introduction">
-                                    <h2>Introduction</h2>
+                                    <h2>自己紹介</h2>
                                     <input type="text" name="user[self_introduction]" value="{{ $user->self_introduction }}"/>
                                     <p class="introduction__error" style="color:red">{{ $errors->first('user.self_introduction') }}</p>
                                 </div>
                                 
                                 <div class='age'>
-                                    <h2>Age</h2>
+                                    <h2>年齢</h2>
                                     <input type='number' name='user[age]' value="{{ $user->age }}">
                                     <p class="age__error" style="color:red">{{ $errors->first('user.age') }}</p>
                                 </div>
                                 <div>
-                                    <h2>Category</h2>
+                                    <h2>職業</h2>
                                     <select name="user[job_id]">
                                         @foreach($jobs as $job)
                                             <option value="{{ $job->id }}">{{ $job->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <input type="submit" value="保存"/>
+                                <x-primary-button class="ml-3">
+                                    {{ __('保存') }}
+                                </x-primary-button>
                             </form>
                             <div class="footer">
                                 <a href="/mypage/{{ $user->id }}">戻る</a>

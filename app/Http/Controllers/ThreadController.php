@@ -22,7 +22,7 @@ class ThreadController extends Controller
         return view('thread_pages/show')->with(['thread' => $thread, 'comments' => $comment->get()]);
     }
     
-    public function create(ThreadRequest $request, Thread $thread){
+    public function store(ThreadRequest $request, Thread $thread){
         
         $thread->title = $request['thread']['title'];
         $thread->user_id = Auth::user()->id;
