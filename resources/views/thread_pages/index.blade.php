@@ -20,7 +20,9 @@
                             <input type="text" name="thread[title]" placeholder="タイトル" value="{{ old('thread.title') }}"/>
                             <p class="title__error" style="color:red">{{ $errors->first('thread.title') }}</p>
                         </div>
-                        <input type="submit" value="作成"/>
+                        <x-primary-button class="ml-3">
+                            {{ __('作成') }}
+                        </x-primary-button>
                     </form>
                 </div>
             </div>

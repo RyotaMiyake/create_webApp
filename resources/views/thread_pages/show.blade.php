@@ -19,7 +19,9 @@
                             <textarea name="comment[body]" placeholder="内容">{{ old('comment.body') }}</textarea>
                             <p class="title__error" style="color:red">{{ $errors->first('comment.body') }}</p>
                         </div>
-                        <input type="submit" value="投稿"/>
+                        <x-primary-button class="ml-3">
+                            {{ __('投稿') }}
+                        </x-primary-button>
                     </form>
                 </div>
             </div>
