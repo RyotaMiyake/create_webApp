@@ -12,7 +12,6 @@
                     {{ Auth::user()->name }}
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    This is Q&A Page!!
                     <p class="create">[<a href="/questions/create">質問作成</a>]</p>
                 </div>
             </div>
@@ -24,13 +23,18 @@
                             <div class='question'>
                                 <h2 class='title'>
                                     <a href="/questions/{{ $question->id }}">
-                                        {{ $question->title }} &ensp; (作成者:{{ $question->user->name }}) &ensp; (作成日:{{ $question->created_at }})
+                                        {{ $question->title }}
                                     </a>
+                                </h2>
+                                <h2 class='body'>
+                                    <a> {{ $question->body }}  &ensp; (作成者:{{ $question->user->name }}) &ensp; (作成日:{{ $question->created_at }}) </a>
                                 </h2>
                             </div>
                         @endforeach
                     </div>
-                    
+                    <div class='paginate'>
+                        {{ $questions->links() }}
+                    </div>
                 </div>
             </div>
         </div>

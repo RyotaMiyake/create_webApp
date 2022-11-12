@@ -14,8 +14,8 @@ use Illuminate\Validation\Rules;
 
 class CommentController extends Controller
 {
-    public function create(CommentRequest $request, Comment $comment, Thread $thread){
-        #dd($request['comment']['body']);
+    public function store(CommentRequest $request, Comment $comment, Thread $thread){
+        
         $comment->body = $request['comment']['body'];
         $comment->user_id = Auth::user()->id;
         $comment->thread_id = $thread->id;

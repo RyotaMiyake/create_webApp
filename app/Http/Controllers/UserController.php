@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Thread;
 use App\Models\Comment;
+use App\Models\Question;
+use App\Models\Answer;
 use App\Models\Job;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -18,8 +20,15 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    public function show(User $user, Thread $thread, Comment $comment){
-        return view('mypages/show')->with(['user' => $user, 'threads' => $thread->get(), 'comments' => $comment->get()]);
+    public function show(User $user, Thread $thread, Comment $comment, Question $question, Answer $answer){
+        return view('mypages/show')
+        ->with([
+            'user' => $user, 
+            'threads' => $thread->getByLimit(),
+            'comments' => $comment->getByLimit(),
+            'questions' => $question->getByLimit(),
+            'answers' => $answer->getByLimit(),
+        ]);
     }
     
     public function edit(User $user, Job $job){

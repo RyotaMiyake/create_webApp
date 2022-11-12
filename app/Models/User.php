@@ -46,7 +46,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    
     //リレーション関連
     
     public function job(){
