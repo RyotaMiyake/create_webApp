@@ -5,6 +5,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
+use App\Models\Thread;
+use App\Models\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/top', function(){
-    return view('top');
+Route::get('/top', function(Thread $thread, Question $question){
+    return view('top')
+    ->with([
+        'threads' => $thread->getByLimit(),
+        'questions' => $question->getByLimit(),
+    ]);
 })->middleware(['auth', 'verified'])->name('top');
 
 //ユーザページ
@@ -37,15 +44,21 @@ Route::controller(ThreadController::class)->middleware(['auth', 'verified'])->gr
     Route::get('/threads', 'index')->name('threads.index');
     Route::post('/threads', 'store')->name('threads.store');
     Route::get('/threads/{thread}', 'show')->name('threads.create');
-
 });
-Route::post('/threads/{thread}', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
+Route::controller(CommentController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::post('/threads/{thread}', 'store')->name('comments.store');
+});
 
 //Q&Aページ
 Route::controller(QuestionController::class)->middleware(['auth', 'verified'])->group(function(){
     Route::get('/questions', 'index')->name('questions.index');
     Route::get('/questions/create', 'create')->name('questions.create');
     Route::post('/questions', 'store')->name('questions.store');
+    Route::get('/questions/{question}', 'show')->name('questions.show');
 });
+Route::controller(AnswerController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::post('/questions/{question}', 'store')->name('answers.store');
+});
+
 
 require __DIR__.'/auth.php';

@@ -15,6 +15,11 @@ class Comment extends Model
         'thread_id',
     ];
     
+    //データ取得と表示
+    public function getByLimit(int $limit_count = 15){
+        return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+    }
+    
     //リレーション関連
     
     public function user(){

@@ -26,7 +26,6 @@ class ThreadController extends Controller
         
         $thread->title = $request['thread']['title'];
         $thread->user_id = Auth::user()->id;
-        
         $thread->save();
         
         return redirect('/threads');
