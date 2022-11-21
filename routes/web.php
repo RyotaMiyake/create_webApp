@@ -6,6 +6,8 @@ use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\StudyTimeController;
+use App\Http\Controllers\TargetController;
 use App\Models\Thread;
 use App\Models\Question;
 
@@ -45,6 +47,7 @@ Route::controller(ThreadController::class)->middleware(['auth', 'verified'])->gr
     Route::post('/threads', 'store')->name('threads.store');
     Route::get('/threads/{thread}', 'show')->name('threads.create');
 });
+
 Route::controller(CommentController::class)->middleware(['auth', 'verified'])->group(function(){
     Route::post('/threads/{thread}', 'store')->name('comments.store');
 });
@@ -56,9 +59,19 @@ Route::controller(QuestionController::class)->middleware(['auth', 'verified'])->
     Route::post('/questions', 'store')->name('questions.store');
     Route::get('/questions/{question}', 'show')->name('questions.show');
 });
+
 Route::controller(AnswerController::class)->middleware(['auth', 'verified'])->group(function(){
     Route::post('/questions/{question}', 'store')->name('answers.store');
 });
 
+//学習記録ページ
+Route::controller(TargetController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/studytime/{user}/target', 'create')->name('targets.create');
+    Route::post('/studytime/{user}/target', 'store')->name('targets.store');
+});
+Route::controller(StudyTimeController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/studytime/{user}', 'index')->name('studytimes.index');
+    Route::post('/studytime/{user}', 'store')->name('studytimes.store');
+});
 
 require __DIR__.'/auth.php';

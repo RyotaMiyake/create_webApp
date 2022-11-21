@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
                         {{ __('Q&A Page') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('studytimes.index', \Auth::user()->id)" :active="request()->routeIs('studytimes.index')">
+                        {{ __('Study Page') }}
+                    </x-nav-link>
                 </div>
             </div>
 

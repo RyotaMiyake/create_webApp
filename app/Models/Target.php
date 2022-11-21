@@ -9,6 +9,13 @@ class Target extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'certification_id',
+        'completion_date',
+        'completion_studytime',
+        'user_id',
+    ];
+    
     //リレーション関連
     
     public function user(){

@@ -9,6 +9,13 @@ class StudyTime extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'certification_id',
+        'started_at',
+        'ended_at',
+        'user_id',
+    ];
+    
     //リレーション関連
     
     public function user(){
