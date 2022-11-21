@@ -26,10 +26,9 @@
                                     <input type="text" name="user[self_introduction]" value="{{ $user->self_introduction }}"/>
                                     <p class="introduction__error" style="color:red">{{ $errors->first('user.self_introduction') }}</p>
                                 </div>
-                                
                                 <div class='age'>
                                     <h2>年齢</h2>
-                                    <input type='number' name='user[age]' value="{{ $user->age }}">
+                                    <input type='number' min=0 max=150 name='user[age]' value="{{ $user->age }}">
                                     <p class="age__error" style="color:red">{{ $errors->first('user.age') }}</p>
                                 </div>
                                 <div>
