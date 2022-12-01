@@ -8,6 +8,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\StudyTimeController;
 use App\Http\Controllers\TargetController;
+use App\Http\Controllers\ChartController;
 use App\Models\Thread;
 use App\Models\Question;
 
@@ -69,9 +70,14 @@ Route::controller(TargetController::class)->middleware(['auth', 'verified'])->gr
     Route::get('/studytime/{user}/target', 'create')->name('targets.create');
     Route::post('/studytime/{user}/target', 'store')->name('targets.store');
 });
+
 Route::controller(StudyTimeController::class)->middleware(['auth', 'verified'])->group(function(){
     Route::get('/studytime/{user}', 'index')->name('studytimes.index');
     Route::post('/studytime/{user}', 'store')->name('studytimes.store');
+});
+
+Route::controller(ChartController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/chart-get', 'chartGet')->name('chartGet');
 });
 
 require __DIR__.'/auth.php';

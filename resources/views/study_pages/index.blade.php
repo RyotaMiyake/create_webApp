@@ -15,6 +15,9 @@
                     {{ Auth::user()->name }}
                 </div>
             </div>
+            <div class="p-6 bg-white border-b border-gray-200">
+                <p class="target">[<a href="/studytime/{{ Auth::user()->id }}/target">目標設定</a>]</p>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2><学習時間記録></h2>
@@ -42,13 +45,10 @@
                             {{ __('記録') }}
                         </x-primary-button>
                     </form>
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="p-6 bg-white border-b border-gray-200">
-                    <p class="target">[<a href="/studytime/{{ Auth::user()->id }}/target">目標設定</a>]</p>
-                </div>
-            <div>
-                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
