@@ -17,10 +17,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+use App\Models\StudyTime;
+
 
 class UserController extends Controller
 {
-    public function show(User $user, Thread $thread, Comment $comment, Question $question, Answer $answer){
+    public function show(User $user, Thread $thread, Comment $comment, Question $question, Answer $answer, StudyTime $studytime){
+        
         return view('mypages/show')
         ->with([
             'user' => $user, 
@@ -28,6 +31,7 @@ class UserController extends Controller
             'comments' => $comment->getByLimit(),
             'questions' => $question->getByLimit(),
             'answers' => $answer->getByLimit(),
+            'studytimes' => $studytime->getForChart(),
         ]);
     }
     

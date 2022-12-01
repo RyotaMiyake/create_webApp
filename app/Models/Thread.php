@@ -16,6 +16,11 @@ class Thread extends Model
     
     //データの取得と表示
     public function getByLimit(int $limit_count = 5){
+        $logs = $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+        foreach($logs as $log){
+            $title_stack[] = $log['title']; 
+        }
+        
         return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
     }
     
