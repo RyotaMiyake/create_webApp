@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit My Page') }}
+            {{ __('プロフィール編集') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <body>
-                        <h1 class="title">編集画面</h1>
+                        <p class="text-lg font-bold">プロフィール編集</p>
                         <div class="content">
                             <form action="/mypage/{{ $user->id }}" method="POST">
                                 @csrf
@@ -33,19 +33,17 @@
                                 </div>
                                 <div>
                                     <h2>職業</h2>
-                                    <select name="user[job_id]">
+                                    <select name="user[job_id]" value="{{ $user->job->name }}">
                                         @foreach($jobs as $job)
                                             <option value="{{ $job->id }}">{{ $job->name }}</option>
                                         @endforeach
                                     </select>
+                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('保存') }}</button>
                                 </div>
-                                <x-primary-button class="ml-3">
-                                    {{ __('保存') }}
-                                </x-primary-button>
                             </form>
-                            <div class="footer">
+                            <button class="bg-white bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                                 <a href="/mypage/{{ $user->id }}">戻る</a>
-                            </div>
+                            </button>
                         </div>
                     </body>
                 </div>
