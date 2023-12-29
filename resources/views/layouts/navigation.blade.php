@@ -12,20 +12,18 @@
 
                 <!-- Navigation Links  -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('top')" :active="request()->routeIs('top')">
-                        {{ __('Top Page') }}
-                    </x-nav-link>
+                    
                     <x-nav-link :href="route('mypage.show', \Auth::user()->id)" :active="request()->routeIs('mypage.show')">
-                        {{ __('My Page') }}
+                        {{ __('マイページ') }}
                     </x-nav-link>
                     <x-nav-link :href="route('threads.index')" :active="request()->routeIs('threads.index')">
-                        {{ __('Thread Page') }}
+                        {{ __('掲示板') }}
                     </x-nav-link>
                     <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
-                        {{ __('Q&A Page') }}
+                        {{ __('Q&A') }}
                     </x-nav-link>
                     <x-nav-link :href="route('studytimes.index', \Auth::user()->id)" :active="request()->routeIs('studytimes.index')">
-                        {{ __('Study Page') }}
+                        {{ __('学習記録') }}
                     </x-nav-link>
                 </div>
             </div>

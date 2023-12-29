@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Question') }}
+            {{ __('質問作成') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <body>
-                        <h1 class="title">質問作成画面</h1>
+                        <p class="text-lg font-bold">質問作成</p>
                         <div class="content">
                             <form action="/questions" method="POST">
                                 @csrf
@@ -31,14 +31,12 @@
                                             <option value="{{ $certification->id }}">{{ $certification->name }}</option>
                                         @endforeach
                                     </select>
+                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('作成') }}</button>
                                 </div>
-                                <x-primary-button class="ml-3">
-                                    {{ __('作成') }}
-                                </x-primary-button>
                             </form>
-                            <div class="footer">
+                            <button class="bg-white bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                                 <a href="/questions">戻る</a>
-                            </div>
+                            </button>
                         </div>
                     </body>
                 </div>
